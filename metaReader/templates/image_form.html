@@ -1,0 +1,21 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Image Metadata</h1>
+<form method="post" action="{% url 'image_metadata' %}">
+    {% csrf_token %}
+    <label for="image_url">Image URL:</label>
+    <input type="text" id="image_url" name="image_url">
+    <button type="submit">Submit</button>
+</form>
+
+{% if metadata %}
+<h2>Metadata:</h2>
+<p><strong>Image URL:</strong> {{ metadata.image_url }}</p>
+<p><strong>Image Name:</strong> {{ metadata.image_name }}</p>
+<p><strong>Image Format:</strong> {{ metadata.image_format }}</p>
+<p><strong>Image Size:</strong> {{ metadata.image_size }}</p>
+<p><strong>Image Mode:</strong> {{ metadata.image_mode }}</p>
+{% endif %}
+{% endblock %}
